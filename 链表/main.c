@@ -64,7 +64,7 @@ pNode create(void)
 
 // 遍历链表函数
 void TraverseList(pNode List) {
-    // 创建一个空的节点指针, 将传入的链表头节点指向的内容赋给p
+    // 创建一个空的节点指针, 将传入的链表头节点指向的内容赋给p,即将首节点赋值给p
     pNode p = List->next;
     // 校验p
     if (p == NULL) printf("链表为空");
@@ -90,27 +90,28 @@ void InsertList(pNode List, int pos, int val)
         p = p->next;
         ++position;
     }
-    pNode Tmp = (pNode)malloc(sizeof(Node));    // 分配一个临时节点用来存储要插入的数据
-    if (Tmp == NULL)
+    pNode tmp = (pNode)malloc(sizeof(Node));    // 分配一个临时节点用来存储要插入的数据
+    if (tmp == NULL)
     {
         printf("内存分配失败！\n");
         exit(-1);
     }
+    // 给新节点赋值
+    tmp->element = val;
     // 插入节点
-    Tmp->element = val;
-    Tmp->next = p->next;
-    p->next = Tmp;
+    tmp->next = p->next;
+    p->next = tmp;
 }
 
 //定义删除整个链表函数
 void DeleteTheList(pNode List) {
-    pNode p, Tmp;
+    pNode p, tmp;
     p = List->next;    // 定义指针P指向链表要删除的链表List的第一个点节点
     List->next = NULL;
     while (p != NULL) {
-        Tmp = p->next;        // 临时Tmp指向要删除的节点的下个节点
+        tmp = p->next;        // 临时tmp指向要删除的节点的下个节点
         free(p);    // 释放指针P指向的节点
-        p = Tmp;    // 重新赋值
+        p = tmp;    // 重新赋值
     }
     printf("删除链表成功！\n");
 }
@@ -125,17 +126,18 @@ int DeleteList(pNode List, int pos) {
         ++position;
     }
 
-    if (pos > position) 
+    // 传入值的位置大于链表的最后一个位置元素的位置值,直接返回
+    if (pos > position+1) 
     {   
         printf("找不到您要删除的链表位置\n");
         return 0;
     }
 
     // 删除节点
-    pNode Tmp = p->next;    // 定义临时指针Tmp指向要删除的节点
-    p->next = Tmp->next;    // 使要删除节点的前驱结点指向其后驱节点
-    free(Tmp);    // 释放删除节点的内存空间，防止内存泄漏
-    Tmp = NULL;    // 使q指向空指针，防止产生野指针
+    pNode tmp = p->next;    // 定义临时指针tmp指向要删除的节点
+    p->next = tmp->next;    // 使要删除节点的前驱结点指向其后驱节点
+    free(tmp);    // 释放删除节点的内存空间，防止内存泄漏
+    tmp = NULL;    // 使tmp指向空指针，防止产生野指针    
 }
 
 
