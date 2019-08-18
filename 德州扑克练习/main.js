@@ -19,7 +19,7 @@
  */
 
 //  加载测试的数据
-const cards_test_seven = require('./testData/seven_with_lazarillo_result')
+const cards_test_seven = require('./testData/seven_cards_with_lazarillo_result')
 const cards_seven = require('./testData/seven_result')
 const cards_test_five = require('./testData/five_with_lazarillo_result')
 const cards_five = require('./testData/five_result')
@@ -71,30 +71,6 @@ function sevenTest(cards) {
     console.log("耗时：", endTime - startTime)
 }
 
-// 七张牌带癞子
-function sevenCardTest() {
-    console.log("=========== 七张牌带癞子的情况 =============")
-    success = 0, err = 0
-    total = cards_test_seven.length
-    startTime = new  Date().getTime()
-    cards_test_seven.map((item, index) => {
-        let res = Pocker.gameStartMore(item, 'X')
-        if (res.result !== item.result) {
-            err++
-            console.log('============================错误结果=============')
-            console.log('错误值位置：', index + 1) // 显示行数
-            console.log('返回值：', res)
-            console.log('原始数据：', item)
-        } else success++
-    })
-    let endTime = new Date().getTime()
-    console.log("test total: ", total)
-    console.log("test success: ", success)
-    console.log("test error:", err)
-    console.log("开始时间：", startTime, '结束时间：', endTime)
-    console.log("耗时：", endTime - startTime)
-}
-
 function main () {
     console.log('=========== 五张不带癞子的情况 ===========')
     fiveTest(cards_five)
@@ -105,4 +81,5 @@ function main () {
     console.log('=========== 七张带癞子的情况 ===========')
     sevenTest(cards_test_seven)
 }
+
 main()
