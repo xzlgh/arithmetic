@@ -13,7 +13,7 @@ function onTest(sourcePockers, laizi) {
         let a = currentItem['alice'], b = currentItem['bob']
         let res = poker.onStart(a, b, laizi)
         if (res !== currentItem.result) {
-            console.log("error data:", currentItem, index)
+            console.log("error data:", currentItem, res, index)
             err++
         } else success++
     })
@@ -24,8 +24,14 @@ function onTest(sourcePockers, laizi) {
 }
 
 function main() {
-    // onTest(sevenLaiziCards, 'Xn')
-    onTest([sevenLaiziCards[605]], 'Xn')
+    console.log('========五张不包含癞子===========')
+    onTest(fiveCards)
+    console.log('=========五张包含癞子============')
+    onTest(fiveLaiziCards, 'Xn')
+    console.log('========七张不包含癞子===========')
+    onTest(sevenCards)
+    console.log('========七张包含癞子=============')
+    onTest(sevenLaiziCards, 'Xn')
 }
 
 main()

@@ -19,7 +19,7 @@
  */
 
 //  加载测试的数据
-const cards_test_seven = require('./testData/seven_cards_with_lazarillo_result')
+const cards_test_seven = require('./testData/seven_with_lazarillo_result')
 const cards_seven = require('./testData/seven_result')
 const cards_test_five = require('./testData/five_with_lazarillo_result')
 const cards_five = require('./testData/five_result')
@@ -45,7 +45,7 @@ function fiveTest(cards) {
     console.log("test success: ", success)
     console.log("test error:", err)
     console.log("开始时间：", startTime, '结束时间：', endTime)
-    console.log("耗时：", endTime - startTime)
+    console.log("耗时：", endTime - startTime, "ms")
 }
 
 // 七张牌不带癞子的情况
